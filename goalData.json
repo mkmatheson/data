@@ -2,7 +2,7 @@
   {
     "name": "foil",
     "data": {
-      "jan": [1, 30, 15],
+      "jan": [1, 30, 15, 20],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -19,7 +19,7 @@
   {
     "name": "movement",
     "data": {
-      "jan": [45, 85, 40],
+      "jan": [45, 85, 40, 60],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -36,7 +36,7 @@
   {
     "name": "music",
     "data": {
-      "jan": [2, 60, 10],
+      "jan": [2, 60, 10, 1],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -53,7 +53,7 @@
   {
     "name": "stretch",
     "data": {
-      "jan": [19, 15, 8],
+      "jan": [19, 15, 8, 8],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -70,7 +70,7 @@
   {
     "name": "juggle",
     "data": {
-      "jan": [2, 5, 2],
+      "jan": [2, 5, 2, 14],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -87,7 +87,7 @@
   {
     "name": "transport",
     "data": {
-      "jan": [2, 2, 1],
+      "jan": [2, 2, 1, 2],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -121,7 +121,7 @@
   {
     "name": "meditation",
     "data": {
-      "jan": [8, 5, 10],
+      "jan": [8, 5, 10, 12],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -175,7 +175,7 @@
     "criteria": { "values": [8, 7, 6, 5, 0], "isInverted": false },
 
     "data": {
-      "jan": [5, 8, 7.5],
+      "jan": [5, 8, 7.5, 8],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -194,7 +194,7 @@
     "name": "gaming",
     "criteria": { "values": [60, 45, 30, 15, 0], "isInverted": true },
     "data": {
-      "jan": [240, 23, 12.5],
+      "jan": [240, 23, 12.5, 27],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -235,7 +235,7 @@
       "isInverted": false
     },
     "data": {
-      "jan": [6, 7, 7],
+      "jan": [6, 7, 7, 4],
       "feb": [],
       "mar": [],
       "apr": [],
