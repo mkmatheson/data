@@ -1,0 +1,255 @@
+{
+  "foil": {
+    "data": {
+      "jan": [1, 30, 15],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "movement": {
+    "data": {
+      "jan": [45, 85, 40],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "music": {
+    "data": {
+      "jan": [2, 60, 10],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "stretch": {
+    "data": {
+      "jan": [19, 15, 8],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "juggle": {
+    "data": {
+      "jan": [2, 5, 2],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "transport": {
+    "data": {
+      "jan": [2, 2, 1],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "word": {
+    "data": {
+      "jan": [10, 60, 45],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "meditation": {
+    "data": {
+      "jan": [8, 5, 10],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "animation": {
+    "data": {
+      "jan": [0, 0, 27],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+  "language": {
+    "data": {
+      "jan": [0, 0, 2],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+
+  "sleep": {
+    "criteria": { "values": [8, 7, 6, 5, 0], "isInverted": false },
+    "data": {
+      "jan": [5, 8, 7.5],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+
+  "gaming": {
+    "criteria": { "values": [60, 45, 30, 15, 0], "isInverted": true },
+    "data": {
+      "jan": [240, 23, 12.5],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+
+  "browsing": {
+    "criteria": { "values": [30, 20, 10, 1, 0], "isInverted": true },
+    "data": {
+      "jan": [40, 60, 25],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+
+  "howIWasFeeling": {
+    "criteria": {
+      "values": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+      "isInverted": false
+    },
+    "data": {
+      "jan": [6, 7, 7],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  },
+
+  "days": {
+    "criteria": { "values": [1, 0], "isInverted": false },
+    "data": {
+      "jan": [1, 1, 1],
+      "feb": [],
+      "mar": [],
+      "apr": [],
+      "may": [],
+      "jun": [],
+      "jul": [],
+      "aug": [],
+      "sep": [],
+      "oct": [],
+      "nov": [],
+      "dec": []
+    }
+  }
+}
