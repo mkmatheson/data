@@ -1,5 +1,13 @@
 [
   {
+    "timestamp": "Sun Jan 04 2026 13:20 GMT-0800",
+    "entry": "If I add @latest to the CDN urls I fetch with, I get the latest data"
+  },
+  {
+    "timestamp": "Sun Jan 04 2026 13:17 GMT-0800",
+    "entry": "Turns out jsDelivr doesn't do a fresh load of github data every second, but I can purge the CDN references with https://www.jsdelivr.com/tools/purge"
+  },
+  {
     "timestamp": "Sun Jan 04 2026 12:53 GMT-0800",
     "entry": "I'm moving the journal and goal data over to their own repo and fetching them using cdn.jsdelivr.net so I don't have to keep adding commits to the repo that don't impact the actual code... the things we do to avoid hosting a DB..."
   },
