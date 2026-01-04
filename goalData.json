@@ -1,5 +1,6 @@
-{
-  "foil": {
+[
+  {
+    "name": "foil",
     "data": {
       "jan": [1, 30, 15],
       "feb": [],
@@ -15,7 +16,8 @@
       "dec": []
     }
   },
-  "movement": {
+  {
+    "name": "movement",
     "data": {
       "jan": [45, 85, 40],
       "feb": [],
@@ -31,7 +33,8 @@
       "dec": []
     }
   },
-  "music": {
+  {
+    "name": "music",
     "data": {
       "jan": [2, 60, 10],
       "feb": [],
@@ -47,7 +50,8 @@
       "dec": []
     }
   },
-  "stretch": {
+  {
+    "name": "stretch",
     "data": {
       "jan": [19, 15, 8],
       "feb": [],
@@ -63,7 +67,8 @@
       "dec": []
     }
   },
-  "juggle": {
+  {
+    "name": "juggle",
     "data": {
       "jan": [2, 5, 2],
       "feb": [],
@@ -79,7 +84,8 @@
       "dec": []
     }
   },
-  "transport": {
+  {
+    "name": "transport",
     "data": {
       "jan": [2, 2, 1],
       "feb": [],
@@ -95,7 +101,8 @@
       "dec": []
     }
   },
-  "word": {
+  {
+    "name": "word",
     "data": {
       "jan": [10, 60, 45],
       "feb": [],
@@ -111,7 +118,8 @@
       "dec": []
     }
   },
-  "meditation": {
+  {
+    "name": "meditation",
     "data": {
       "jan": [8, 5, 10],
       "feb": [],
@@ -127,7 +135,8 @@
       "dec": []
     }
   },
-  "animation": {
+  {
+    "name": "animation",
     "data": {
       "jan": [0, 0, 27],
       "feb": [],
@@ -143,7 +152,8 @@
       "dec": []
     }
   },
-  "language": {
+  {
+    "name": "language",
     "data": {
       "jan": [0, 0, 2],
       "feb": [],
@@ -160,8 +170,10 @@
     }
   },
 
-  "sleep": {
+  {
+    "name": "sleep",
     "criteria": { "values": [8, 7, 6, 5, 0], "isInverted": false },
+
     "data": {
       "jan": [5, 8, 7.5],
       "feb": [],
@@ -178,7 +190,8 @@
     }
   },
 
-  "gaming": {
+  {
+    "name": "gaming",
     "criteria": { "values": [60, 45, 30, 15, 0], "isInverted": true },
     "data": {
       "jan": [240, 23, 12.5],
@@ -196,7 +209,8 @@
     }
   },
 
-  "browsing": {
+  {
+    "name": "browsing",
     "criteria": { "values": [30, 20, 10, 1, 0], "isInverted": true },
     "data": {
       "jan": [40, 60, 25],
@@ -214,7 +228,8 @@
     }
   },
 
-  "howIWasFeeling": {
+  {
+    "name": "howIWasFeeling",
     "criteria": {
       "values": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
       "isInverted": false
@@ -235,7 +250,8 @@
     }
   },
 
-  "days": {
+  {
+    "name": "days",
     "criteria": { "values": [1, 0], "isInverted": false },
     "data": {
       "jan": [1, 1, 1],
@@ -252,4 +268,4 @@
       "dec": []
     }
   }
-}
+]
