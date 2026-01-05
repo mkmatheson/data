@@ -36,7 +36,7 @@
   {
     "name": "music",
     "data": {
-      "jan": [2, 60, 10, 1],
+      "jan": [2, 60, 10, 4],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -138,7 +138,7 @@
   {
     "name": "animation",
     "data": {
-      "jan": [0, 0, 27],
+      "jan": [0, 0, 27, 31],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -155,7 +155,7 @@
   {
     "name": "language",
     "data": {
-      "jan": [0, 0, 2],
+      "jan": [0, 0, 2, 31],
       "feb": [],
       "mar": [],
       "apr": [],
@@ -254,7 +254,7 @@
     "name": "days",
     "criteria": { "values": [1, 0], "isInverted": false },
     "data": {
-      "jan": [1, 1, 1],
+      "jan": [1, 1, 1, 1],
       "feb": [],
       "mar": [],
       "apr": [],
