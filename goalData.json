@@ -213,7 +213,7 @@
     "name": "browsing",
     "criteria": { "values": [30, 20, 10, 1, 0], "isInverted": true },
     "data": {
-      "jan": [40, 60, 25],
+      "jan": [40, 60, 25, 19],
       "feb": [],
       "mar": [],
       "apr": [],
