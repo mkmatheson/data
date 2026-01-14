@@ -150,7 +150,8 @@
       "oct": [],
       "nov": [],
       "dec": []
-    }
+    },
+    "isDisabled": true
   },
   {
     "name": "language",
