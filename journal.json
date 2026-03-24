@@ -1,4 +1,277 @@
 [
+
+  {
+    "timestamp": "Tue Mar 17 2026 16:00 GMT-0800",
+    "entry": "I'm adding a cron job that will shut my pi off automatically around 9pm. Reminder that my timezone is not necessarily the Pi's timezone"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 15:44 GMT-0800",
+    "entry": "On a feather's gpio, RX pin is 24 and TX is 25. There's a library called 'board' I can import and directly reference these pins as board.TX, making the connection even easier to set up. Soldering is still a couple days away (looking to buy a used kit), while I'm waiting I'll 3d print a couple backup cases"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 15:44 GMT-0800",
+    "entry": "For future self: busio.UART needs a baudrate, the feather can likely handle 115200 as the common default, but I'll make sure pyserial opens my connection at the same rate"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 15:43 GMT-0800",
+    "entry": "Caveat: uart.write() sends data as bytes, so I'll need to run .encode('utf-8') on my string before sending, then decode it on the other end"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 15:33 GMT-0800",
+    "entry": "I was thinking of using pyserial on feather but turns out there's already a built-in busio.UART class that came with the flash installation. I can pass my notifications as a stringified JSON object and send it over UART, with a newline character at the end to signal the end of the stream. I think the pyserial library should interpret this correctly if I just use the readline fn "
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 15:16 GMT-0800",
+    "entry": "I'll use the pyserial library to read lines into my rasp pi code. the Pi UART device path is usually /dev/serial0 but I'll want to verify. I'll need to enable serial port hardware in raspi-config before I get any data in"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 15:15 GMT-0800",
+    "entry": "Solder housekeeping: I'll need 1 pin for GND to GND to create a common reference voltage, 1 pin for 3.3v power, and 1pin to feed the feather's TX serial output pin to the pi's RX serial input pin"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 14:28 GMT-0800",
+    "entry": "I was hoping to use more ANSI characters to bold and underline the app names that act as headers for each message section, unfortunately my pi terminal font options are limited and I don't want to try introducing a new font right now."
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 14:11 GMT-0800",
+    "entry": "After fiddling around with f\"{test:<10}|\" I was able to fill out each sender and message when they are too short for their column width. Using [20:] I can do the proper truncation as well"
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 14:07 GMT-0800",
+    "entry": "I'm printing some mock data to the display (success!) but now I want to properly format and truncate the sender/message so that it all is aligned in a table-looking format."
+  },
+  {
+    "timestamp": "Tue Mar 17 2026 09:28 GMT-0800",
+    "entry": "Unfortunately, there's no concept of UUID in this ANCS library. Notifications are sent with a numerical ID counting up from 0 where 0 is the first banked notification. This will make it trickier to overwrite my 'latest message from a sender' if I have the same sender in separate group texts or emails.."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 15:43 GMT-0800",
+    "entry": "As far as data goes, I can get back the app id, title, subtitle (if any, usually group chat name), message, and date sent, in ISO 8601 YYYYMMDDTHHMMSS"
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 15:40 GMT-0800",
+    "entry": "Switched back to the circuit python ANCS library in the feather code, it finally showed up for a brief time on my iPad, so I connected. Each subsequent connection on device boot takes anywhere from 30 seconds to 5 minutes, so I'll just keep a timeout running on my pi that will shut down if connection isn't established on my feather after like 20 minutes."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 15:04 GMT-0800",
+    "entry": "If I set up the feather for UART connection instead of ANCS, it easily connects to the Adafruit ios app for bluetooth connections, so at very least, my device isn't faulty."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 14:39 GMT-0800",
+    "entry": "Tried using blueutil to scan for available bluetooth devices from my mac, still no luck"
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 14:33 GMT-0800",
+    "entry": "When the feather has an open radio connection broadcasting, I should expect it to show up in the iOS setting's list of bluetooth devices, but it's not showing up, even though I've verified the device is pinging."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 14:20 GMT-0800",
+    "entry": "Added all the necessary circuitPython libraries to my Feather, time to write some ANCS code and establish connection to my iOS device, through which I'll route all notifications"
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 14:12 GMT-0800",
+    "entry": "Learned what serial output is, since that's how I read data on my Feather on my mac. I use the `screen` command to get a connection to my peripheral's /dev/tty"
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 14:05 GMT-0800",
+    "entry": "Feather has arrived. Flashing the drive and formatting for circuitPython"
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 13:31 GMT-0800",
+    "entry": "my terminal doesn't support true RGB color, so I'm getting back very simple coloring on my display. To get a deep amber color, I could try messing with the frame buffer set in my pi's config. Will probably do this later as it's not a priority. Also it's the IBM 3290 that had the amber display, not 3270."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 12:50 GMT-0800",
+    "entry": "I'd rather use underline text to format but for now I'll just use unicode Box drawing characters to make the edges of the table"
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 12:50 GMT-0800",
+    "entry": "reminder to sort notifications in a group based on latest timestamp, but this may not be an issue since notifications will likely be loading in chronologically anyways."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 12:36 GMT-0800",
+    "entry": "I'll be scrolling through all notifications at a fairly slow rate. If a new notification comes in mid-scroll or gets deleted mid-scroll, I'll let the notification list finish its current scroll before re-fetching the latest state of notifications. This means I'll probably store my notifications on my Feather and send notification data one row at a time to the pi, rather than keep a separate store on the pi."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 12:32 GMT-0800",
+    "entry": "Because I can't guarantee a unique identifier for messages from the same sender if that sender is posting to a group message, I'll need to use some sort of combination of sender+reciever as a UUID that signals if I should overwrite an existing communication (I only want to show the latest notification from a group text, for example)."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 12:00 GMT-0800",
+    "entry": "I'm thinking a line dedicated to the name of the service (Gmail, Message), then a line with HH:MM | Sender | Message . I'll keep the Sender truncated to a few characters and then fill the rest of the line with a message preview."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 11:57 GMT-0800",
+    "entry": "Going with bash profile load, disabling systemctl service. Moving on to what my display should be."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 11:51 GMT-0800",
+    "entry": "If I want to keep auto-login, I can scrap the systemd service and just have my script run in the bashprofile when my tty instance starts up, checking to make sure I'm running it off the main tty and not pty."
+  },
+  {
+    "timestamp": "Mon Mar 16 2026 11:38 GMT-0800",
+    "entry": "Added my user to the tty group, but turns out tty1 has restrictive permissions, possibly due to my auto-login"
+  },
+  {
+    "timestamp": "Thu Mar 12 2026 12:13 GMT-0800",
+    "entry": "I added the getty service as an After and Requires to my service under /etc/systemd/system/ but I'm still getting back a permission error after reboot."
+  },
+  {
+    "timestamp": "Thu Mar 12 2026 12:04 GMT-0800",
+    "entry": "systemctl show getty@tty1.service | grep -E 'After|Before|WantedBy' shows me where the terminal load sits in the boot order. My on-boot service should be in the Before section, handled by adding getty to my service's After section"
+  },
+  {
+    "timestamp": "Thu Mar 12 2026 11:58 GMT-0800",
+    "entry": "The directive After=multi-user.target may not guarantee that TTY is fully initialized and owned by my user, especially with auto-login configured, which assigns ownership of tty1 to my user. If I make auto-login a pre-req to running my script, that should solve it"
+  },
+  {
+    "timestamp": "Thu Mar 12 2026 11:43 GMT-0800",
+    "entry": "systemd service runs on boot but doesn't show up in terminal. It may not be the last thing running and therefore doesn't ever make it to output, or /dev/tty1 isn't set up yet at the moment of run. systemctl status shows a permission denied issue."
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 09:57 GMT-0800",
+    "entry": "'Connecting' text is centered, now to add the dots. I don't want to just be rewriting '.' then '..' then '...', I'd rather have them appear dynamically, so I'll just do a while loop that prints and waits, moving the cursor. I'll then need to clear out just the portion of that line that has the dots in order to reset them."
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 09:52 GMT-0800",
+    "entry": "I learned that ANSI escape codes expect integers, so I need to use Python's // divider instead of /"
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 09:36 GMT-0800",
+    "entry": "I can center my text horizontally using print('text'.center(dimensions.columns)), but I need to center it vertically as well. Looks like ANSI escape codes will be the move again. `backslash x1b[10;5H moves to line 10, column 5.`"
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 09:30 GMT-0800",
+    "entry": "os.get_terminal_size(tty.fileno()) gives me os.terminal_size(columns=128, lines=37)"
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 09:20 GMT-0800",
+    "entry": "I'll use os.get_terminal_size() on my dev/tt1 output to figure out how to properly center my loading screen. I'll animate the classic loading dots"
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 09:05 GMT-0800",
+    "entry": "I don't love this approach, but since this doesn't affect the system outside of my script, I'm going to bank sys.stdout and overwrite it with my tty path, then swap back to normal sys.stdout at the end of my script."
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 08:57 GMT-0800",
+    "entry": "First, I'll want to clear out the terminal console. I was thinking just importing subprocess and running subprocess.run(['clear']) but it turns out I can just use ANSI escape codes to clear the screen and mute the flashing cursor"
+  },
+  {
+    "timestamp": "Tue Mar 10 2026 08:48 GMT-0800",
+    "entry": "When I ssh into my pi, any script I run only shows up on my ssh'ed terminal. I'll need to reroute my output to my display, something like using echo 'hello world' > /dev/tty1"
+  },
+  {
+    "timestamp": "Mon Mar 09 2026 22:35 GMT-0800",
+    "entry": "Something I didn't consider.. I need to solder the pins between the Pi and the Feather.. Only problem is I don't know how to solder"
+  },
+  {
+    "timestamp": "Mon Mar 09 2026 22:30 GMT-0800",
+    "entry": "Using systemd, I was able to create a custom service file that runs on boot, so my script will start right off the bat. Corrected file permissions, enabled service, and checked the system logs to ensure it's correctly enabled"
+  },
+  {
+    "timestamp": "Mon Mar 09 2026 20:52 GMT-0800",
+    "entry": "using raspi-config I switched to auto-login so I don't have to ssh in with a password every time."
+  },
+  {
+    "timestamp": "Mon Mar 09 2026 20:30 GMT-0800",
+    "entry": "sudo poweroff will be a nice command to shut off the device for the day. Convenient that powering off the pi also powers off the display."
+  },
+  {
+    "timestamp": "Mon Mar 09 2026 20:00 GMT-0800",
+    "entry": "My display wasn't working correctly, had to check I was properly sshing in with nmap and ifconfig. I updated the config.txt on my Pi's OS to ensure it was handling the display correctly. Turns out case for the pi is 3d printed and doesn't seat the HDMI port right, so I'll need to get a different kind of case."
+  },
+  {
+    "timestamp": "Mon Mar 09 2026 18:30 GMT-0800",
+    "entry": "Pi gear arrived today. I flashed a memory card with Pi OS lite. I tried SSHing in with the pi@raspberrypi.local command, but it didn't work. I was able to ssh in with my userid @ the address the Pi takes on my network."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 21:51 GMT-0800",
+    "entry": "Order for the feather is in. I'm naming this project 'Ripe Banana'"
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 20:54 GMT-0800",
+    "entry": "From the spec, Feather typically draws between 300µA and 400µA, which is well within the Pi's power pin limit of 50mA. Aside: I'll need to connect a GND pin between the two devices."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 20:53 GMT-0800",
+    "entry": "I'm not actually sure if the Feather can transfer data over network, worst case we do Feather TX -> Pi RX pin, and since the Feather runs on 3.3v, I can connect it to the Pi's 3.3v power pin."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 20:43 GMT-0800",
+    "entry": "ANCS can give me back  app_id, message body, subtitle, and title, which is all I'll need to display"
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 20:41 GMT-0800",
+    "entry": "Current plan: iOS -> Feather, format to JSON, send to pi over physical wire connection. Both the Pi and the Feather have UART serial communication pins. I could also run the notifications back and forth over my local network, but we'll keep physical connection as an option"
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 20:19 GMT-0800",
+    "entry": "With a bluetooth connection, I can impersonate a BLE peripheral that iOS can forward notifications to. This repo https://github.com/adafruit/Adafruit_CircuitPython_BLE_Apple_Notification_Center is a CircuitPython library so I'll need an add-on that supports it, like the Adafruit Feather nRF52840. There are other libraries that can handle ANCS for raspberry pis directly, but none seem well-supported nor documented."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 20:17 GMT-0800",
+    "entry": "As an aside, Meta is sunsetting their Instagram / Messenger desktop clients, probably because they're not riddled with enough ads."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 19:46 GMT-0800",
+    "entry": "/Library/Group Containers/group.com.apple.usernoted is a directory that shows all notifications but this is still on the Mac, not the phone (or ipad?), so it might not have every notification, or it's actually just an extra layer of rerouting from phone to mac to pi."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 19:43 GMT-0800",
+    "entry": "So with iOS 26.4, Apple is allowing ANCS (their notification system) to forward notifications to third-party devices but ONLY IN THE EU because the EU actually demands this sort of flexibility. So in the future I could just do a direct forwarding to my Pi but for now I'll have to route from iOS device to Pi."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 19:40 GMT-0800",
+    "entry": "Considered running everything through a Shortcut on iOS with webhooks but the Shortcuts app is limited to only triggers from messages or the Mail app, looks fairly limited overall. Apple must not have enough demand from Shortcut power users. I thought about intercepting iPhone notifications but what if I just forwarded notifications from my device (or another apple device) to my Pi?"
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 19:32 GMT-0800",
+    "entry": "Still not loving the way the project is going, it doesn't capture the vision of letting each source of messages be handled independently. Is there an alternative approach?"
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 19:06 GMT-0800",
+    "entry": "If I'm hosting chat.db via server on my Mac, should I consider UDP broadcasting or writng to a file that gets rsync'd? Nah, I can just have a localhost server on my network. Also if I want to distinguish messages by service, I might need to have a separate hashmap for each service to store each distinct conversation. Or I could have a hashmap of hashmaps... I should consider which will be most write-efficient."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 19:06 GMT-0800",
+    "entry": "A lot of these services will give you email notifications if you opt-in, but that heavily loads up Gmail and if the API is unavailable for whatever reason, there go most of my notifications"
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 18:31 GMT-0800",
+    "entry": "Drat, a lot of the sources I was hoping to pull messages from don't have a public API. Turns out Meta had quite a few available back in the day but have shuttered anything that's not for businesses.. time to rethink if I'd rather go another route or just condense to the few public APIs I've found (Gmail, Discord) + the chat.db. Gmail can list user messages using https://developers.google.com/workspace/gmail/api/guides/list-messages#code_sample , adding the param q after: XXXXXXX timestamp to get messages for a given day https://developers.google.com/workspace/gmail/api/reference/rest/v1/users.messages/list#query-parameters . I should then consider 'watermarking' a given timestamp each time the pi reboots to make sure I'm only getting messages for a given day."
+  },
+  {
+    "timestamp": "Sun Mar 08 2026 17:38 GMT-0800",
+    "entry": "Thinking more on the APIs, I'll need to be mindful about auth and where I want to store keys. This journal is public, hope no one (no bot) is getting ideas. Side note: I'd probably want to dedupe messages sent by the same sender, so I only read their most recent message."
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 13:00 GMT-0800",
+    "entry": "Spent way too much time fussing over the cheapest but durable hardware. Raspberry Pi Zero 2W + Waveshare 7in display, maybe a push button + dupont jumper wires to have a bootup / shutdown option. Order is in."
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 13:00 GMT-0800",
+    "entry": "I like the idea of a scheduled on/off for the pi. Some sort of cron job, probably. Color scheme for the display will be amber on black (IBM 3270?)"
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 12:51 GMT-0800",
+    "entry": "Hardware: doesn't need to be a display bigger than a Nintendo Switch. If I want bigger, I should just get a monitor. I envision a retro display, as though I were running this on an Apple II"
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 12:24 GMT-0800",
+    "entry": "The notifications should be categorized by source, with a table header of Source | Time | Sender | first 100 chars of message. If I do the iMessage db route, I'll have to host it on a local server on my laptop. Not optimal if I planned on sleeping my computer."
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 12:23 GMT-0800",
+    "entry": "Raspberry pi seems like the way to go, with an e-ink or mini LED display. Gmail has an accessible API I can fetch from, but I'll need to check that all the other sources I want to pull from do as well. iMessage looks to be a challenge, might be easier to pull from the local chat.db on my computer."
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 12:20 GMT-0800",
+    "entry": "The motive here is that I don't like checking my phone. If I have notifications enabled, they're a nuisance. If I disable notifications, I end up checking the apps anyways. With a mailbox, you look to see if the flag is up, and that tells you if there's mail, but the mailbox isn't yelling at you. Or like bananas. You just look over at the bananas and you have a pretty good idea for whether or not you can eat them."
+  },
+  {
+    "timestamp": "Wed Mar 04 2026 12:17 GMT-0800",
+    "entry": "I want to build a personal notification display, something like a cross between a bloomberg terminal, airport flight monitor, and a hospital bed management display. It should show all my notifications, mail, DMs, texts, and update in realtime."
+  },
   {
     "timestamp": "Sun Jan 04 2026 13:20 GMT-0800",
     "entry": "If I add @latest to the CDN urls I fetch with, I get the latest data"
