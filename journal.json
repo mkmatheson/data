@@ -1,6 +1,78 @@
 [
 
   {
+    "timestamp": "Thu Apr 02 2026 15:39 GMT-0800",
+    "entry": "using the threading and queue libraries, I can have a producer/consumer pattern that does a complete read of the serial data from the feather before proceeding to print them all. If I do it all in a while loop, then I can close out the threads at the end of the loop and reopen the processor thread at the start of the next loop, where the processor thread contains a ser.readline() call that will pause the program again."
+  },
+  {
+    "timestamp": "Thu Apr 02 2026 15:27 GMT-0800",
+    "entry": "Next steps: make a better concurrent serial read so I could load all notifications at once, sort them and dedupe, then print them line by line, rather than receiving notifs one by one."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 19:07 GMT-0800",
+    "entry": "End to end system v1 is successfully running. I'll increase the polling timeout to 15 minutes to disincentivize checking the display often"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 15:07 GMT-0800",
+    "entry": "Since I don't have unique ids available per notif, I can try creating a unique id through app_id + title + date + sender to dedupe notifications sent by the same sender in the same group. This will be a future improvement."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 14:51 GMT-0800",
+    "entry": "Background thread is in place, using thread.join() closes out the thread after I've verified we've established connection."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 14:49 GMT-0800",
+    "entry": "Once the feather is connected to my device, it initially sends an empty object, so I shouldn't start loading notifs right away or the pi will have nothing to read."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 14:03 GMT-0800",
+    "entry": "Side note: there's a one in a million chance that the feather somehow connects to my iOS device and starts sending data to the pi before the pi has loaded, and we get dropped UART data. Shouldn't be a problem since we're refreshing every so often"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 14:02 GMT-0800",
+    "entry": "I want my 'Connecting . . .' animation to continually play until the first serial data arrives from feather to pi. This will be a concurrency issue solved by a simple background thread."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 14:01 GMT-0800",
+    "entry": "reminder to tex.encode('ascii').decode('ascii') to get rid of any weird unicode characters"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 13:36 GMT-0800",
+    "entry": "I was worried about the Feather sending payloads faster than the Pi can process, but at 115200 baud with small payloads shouldn't be a problem."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 13:28 GMT-0800",
+    "entry": "turns out ser.readline() blocks and waits for a newline character, so things stay synchronous. I'll need to have a special END string or something to show the feather is done sending notifs"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 13:23 GMT-0800",
+    "entry": "since I don't have data communication for *removing* notifications, I'll need to poll for new notifications every so often, rather than doing things event-driven. Maybe every 60 seconds I'll just get the fresh batch of unread notifs?"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 13:20 GMT-0800",
+    "entry": "the serial library will take in notifications using ser.readline() until it sees a newline character. Each notification gets stringified using json.dumps on the feather and then does uart.write(string.encode())"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 12:39 GMT-0800",
+    "entry": "Checking permissions on /dev/serial0. it's a symlink to ttyS0, which has a group owner of dialout. I added my user to the group for dialout"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 12:38 GMT-0800",
+    "entry": "error serial.serialutil.PortNotOpenError: Attempting to use a port that is not open"
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 12:03 GMT-0800",
+    "entry": "Need to install pyserial in order to properly read UART data. Turns out I have python but not pip installed. Probably breaking system packages given that this pi isn't getting used for anything else."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 11:55 GMT-0800",
+    "entry": "GND to GND, 3.3v to 3.3v, and TX to RX pins are connected via jumper wire. Hoping nothing gets fried on first try."
+  },
+  {
+    "timestamp": "Wed Apr 01 2026 11:54 GMT-0800",
+    "entry": "Pins have been soldered thanks to my buddy who actuall knows how to solder. I should probably learn, but I'm grateful I didn't reduce my pi and feather pins to blobs."
+  },
+  {
     "timestamp": "Tue Mar 17 2026 16:00 GMT-0800",
     "entry": "I'm adding a cron job that will shut my pi off automatically around 9pm. Reminder that my timezone is not necessarily the Pi's timezone"
   },
