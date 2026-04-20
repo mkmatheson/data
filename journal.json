@@ -1,348 +1,538 @@
 [
-
+  {
+    "timestamp": "Sun Apr 06 2026 11:14 GMT-0800",
+    "entry": "Adding an include guard in my header file to prevent multiple inclusions. #ifndef -> #endif",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sun Apr 05 2026 13:55 GMT-0800",
+    "entry": "Adding an include guard in my header file to prevent multiple inclusions. #ifndef -> #endif",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sun Apr 05 2026 13:43 GMT-0800",
+    "entry": ".c files contain implementation, .h files contain declarations, prototypes, defininitions, and #defines. I can make variables widely available with `extern`",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sun Apr 05 2026 08:10 GMT-0800",
+    "entry": "I'll be using gcc to compile over clang.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sun Apr 05 2026 08:06 GMT-0800",
+    "entry": "I'll need a library to render the UI. Options are ncurses (drawing to terminal), SDL (can handle input, sound, and more), raylib (simpler API). Let's do SDL, it'll be a good challenge.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 14:07 GMT-0800",
+    "entry": "Fns I need: moveSnake, paintMovement, placeFruit, checkEndGame, processUserEvent, handleGameOver, and initGame",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 14:07 GMT-0800",
+    "entry": "Huh, didn't realize that an array pointer had the same syntax as an int pointer. They're reference the same way, so my pointer passes to the first item in the array rather than the entire array. Essentially someIntArray[45] reads memory 45 integers past wherever someIntArray[0] lives in memory, but referencing someInt[45] also does the same. Unforgiving.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 14:03 GMT-0800",
+    "entry": "With C I'll need to be more mindful of how I reference variables, passing in pointers and dereferencing them to update variables that exist in my main fn, rather than having global variables that I reference wherever.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 14:00 GMT-0800",
+    "entry": "I'll need to declare all my fns beforehand as prototypes.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 13:21 GMT-0800",
+    "entry": "Got a little discombobulated, but to keep things straight. I'll have one array for the circular buffer that is indexed by segment order, answering 'what's the nth piece of the snake?' the other array, arena, is an occupancy array indexed by board position, answering 'what is in this cell?'",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 12:31 GMT-0800",
+    "entry": "Using the preprocessor directive #define, I can set up a const for the array length to store my grid size, then use it when I declare my arrays.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 12:08 GMT-0800",
+    "entry": "I can use a typedef to avoid having to rewrite `struct Position` every time I declare a new Position variable.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 12:07 GMT-0800",
+    "entry": "C doesn't have classes (obviously). I'll make a struct for Position which just holds an x and y coordinate.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 12:05 GMT-0800",
+    "entry": "Refresh rate for the snake determines its speed, and should increase as the game progresses.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 12:04 GMT-0800",
+    "entry": "1: start snake with length of two on center of screen. Fruit is assigned random position 2: check for user's last input for direction change (assuming a starting direction of L -> R. Only directions perpendicular to the current direction will work. 3: Four things to check for before advancing a frame: next pos is edge, next pos is snake, next pos is fruit, user has entered arrow key. First two cases result in game end, case 3 flags a snake grow, where the tail is not removed. 4: If game has not ended, move head to next position. If snake is not flagged to grow, remove tail segment. 5: continually be checking for user input between frames, ",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 11:58 GMT-0800",
+    "entry": "The game should end if the next position the snake touches is an edge or is already occupied by another part of the snake.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 11:47 GMT-0800",
+    "entry": "A circular (ring) buffer is an array strategy I can use to keep track of the snake position. Each time the head marches forward, I add a new segment at the rightmost position and remove the tail from the leftmost position, wrapping around back to 0.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 11:47 GMT-0800",
+    "entry": "I can use an array that keeps track of the snake's positions, but that could get expensive when updating each snake body element's position. Shifting positions would be wasteful.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 11:46 GMT-0800",
+    "entry": "C doesn't have a built in queue, but that would have been the easiest way to keep track of and update position, where the tail position would be the first element in the",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 11:45 GMT-0800",
+    "entry": "I'll need to keep track of the snake's length and position, boundaries, and fruit to eat.",
+    "tags": ["c-snake"]
+  },
+  {
+    "timestamp": "Sat Apr 04 2026 11:42 GMT-0800",
+    "entry": "I'm leaving ripe-banana where it is for now. I'm also going to add a 'tags' variable to my journal entries so I can separate projects.",
+    "tags": ["ripe-banana"]
+  },
   {
     "timestamp": "Thu Apr 02 2026 15:39 GMT-0800",
-    "entry": "using the threading and queue libraries, I can have a producer/consumer pattern that does a complete read of the serial data from the feather before proceeding to print them all. If I do it all in a while loop, then I can close out the threads at the end of the loop and reopen the processor thread at the start of the next loop, where the processor thread contains a ser.readline() call that will pause the program again."
+    "entry": "using the threading and queue libraries, I can have a producer/consumer pattern that does a complete read of the serial data from the feather before proceeding to print them all. If I do it all in a while loop, then I can close out the threads at the end of the loop and reopen the processor thread at the start of the next loop, where the processor thread contains a ser.readline() call that will pause the program again.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Thu Apr 02 2026 15:27 GMT-0800",
-    "entry": "Next steps: make a better concurrent serial read so I could load all notifications at once, sort them and dedupe, then print them line by line, rather than receiving notifs one by one."
+    "entry": "Next steps: make a better concurrent serial read so I could load all notifications at once, sort them and dedupe, then print them line by line, rather than receiving notifs one by one.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 19:07 GMT-0800",
-    "entry": "End to end system v1 is successfully running. I'll increase the polling timeout to 15 minutes to disincentivize checking the display often"
+    "entry": "End to end system v1 is successfully running. I'll increase the polling timeout to 15 minutes to disincentivize checking the display often",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 15:07 GMT-0800",
-    "entry": "Since I don't have unique ids available per notif, I can try creating a unique id through app_id + title + date + sender to dedupe notifications sent by the same sender in the same group. This will be a future improvement."
+    "entry": "Since I don't have unique ids available per notif, I can try creating a unique id through app_id + title + date + sender to dedupe notifications sent by the same sender in the same group. This will be a future improvement.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 14:51 GMT-0800",
-    "entry": "Background thread is in place, using thread.join() closes out the thread after I've verified we've established connection."
+    "entry": "Background thread is in place, using thread.join() closes out the thread after I've verified we've established connection.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 14:49 GMT-0800",
-    "entry": "Once the feather is connected to my device, it initially sends an empty object, so I shouldn't start loading notifs right away or the pi will have nothing to read."
+    "entry": "Once the feather is connected to my device, it initially sends an empty object, so I shouldn't start loading notifs right away or the pi will have nothing to read.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 14:03 GMT-0800",
-    "entry": "Side note: there's a one in a million chance that the feather somehow connects to my iOS device and starts sending data to the pi before the pi has loaded, and we get dropped UART data. Shouldn't be a problem since we're refreshing every so often"
+    "entry": "Side note: there's a one in a million chance that the feather somehow connects to my iOS device and starts sending data to the pi before the pi has loaded, and we get dropped UART data. Shouldn't be a problem since we're refreshing every so often",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 14:02 GMT-0800",
-    "entry": "I want my 'Connecting . . .' animation to continually play until the first serial data arrives from feather to pi. This will be a concurrency issue solved by a simple background thread."
+    "entry": "I want my 'Connecting . . .' animation to continually play until the first serial data arrives from feather to pi. This will be a concurrency issue solved by a simple background thread.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 14:01 GMT-0800",
-    "entry": "reminder to tex.encode('ascii').decode('ascii') to get rid of any weird unicode characters"
+    "entry": "reminder to tex.encode('ascii').decode('ascii') to get rid of any weird unicode characters",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 13:36 GMT-0800",
-    "entry": "I was worried about the Feather sending payloads faster than the Pi can process, but at 115200 baud with small payloads shouldn't be a problem."
+    "entry": "I was worried about the Feather sending payloads faster than the Pi can process, but at 115200 baud with small payloads shouldn't be a problem.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 13:28 GMT-0800",
-    "entry": "turns out ser.readline() blocks and waits for a newline character, so things stay synchronous. I'll need to have a special END string or something to show the feather is done sending notifs"
+    "entry": "turns out ser.readline() blocks and waits for a newline character, so things stay synchronous. I'll need to have a special END string or something to show the feather is done sending notifs",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 13:23 GMT-0800",
-    "entry": "since I don't have data communication for *removing* notifications, I'll need to poll for new notifications every so often, rather than doing things event-driven. Maybe every 60 seconds I'll just get the fresh batch of unread notifs?"
+    "entry": "since I don't have data communication for *removing* notifications, I'll need to poll for new notifications every so often, rather than doing things event-driven. Maybe every 60 seconds I'll just get the fresh batch of unread notifs?",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 13:20 GMT-0800",
-    "entry": "the serial library will take in notifications using ser.readline() until it sees a newline character. Each notification gets stringified using json.dumps on the feather and then does uart.write(string.encode())"
+    "entry": "the serial library will take in notifications using ser.readline() until it sees a newline character. Each notification gets stringified using json.dumps on the feather and then does uart.write(string.encode())",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 12:39 GMT-0800",
-    "entry": "Checking permissions on /dev/serial0. it's a symlink to ttyS0, which has a group owner of dialout. I added my user to the group for dialout"
+    "entry": "Checking permissions on /dev/serial0. it's a symlink to ttyS0, which has a group owner of dialout. I added my user to the group for dialout",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 12:38 GMT-0800",
-    "entry": "error serial.serialutil.PortNotOpenError: Attempting to use a port that is not open"
+    "entry": "error serial.serialutil.PortNotOpenError: Attempting to use a port that is not open",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 12:03 GMT-0800",
-    "entry": "Need to install pyserial in order to properly read UART data. Turns out I have python but not pip installed. Probably breaking system packages given that this pi isn't getting used for anything else."
+    "entry": "Need to install pyserial in order to properly read UART data. Turns out I have python but not pip installed. Probably breaking system packages given that this pi isn't getting used for anything else.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 11:55 GMT-0800",
-    "entry": "GND to GND, 3.3v to 3.3v, and TX to RX pins are connected via jumper wire. Hoping nothing gets fried on first try."
+    "entry": "GND to GND, 3.3v to 3.3v, and TX to RX pins are connected via jumper wire. Hoping nothing gets fried on first try.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Apr 01 2026 11:54 GMT-0800",
-    "entry": "Pins have been soldered thanks to my buddy who actuall knows how to solder. I should probably learn, but I'm grateful I didn't reduce my pi and feather pins to blobs."
+    "entry": "Pins have been soldered thanks to my buddy who actuall knows how to solder. I should probably learn, but I'm grateful I didn't reduce my pi and feather pins to blobs.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 16:00 GMT-0800",
-    "entry": "I'm adding a cron job that will shut my pi off automatically around 9pm. Reminder that my timezone is not necessarily the Pi's timezone"
+    "entry": "I'm adding a cron job that will shut my pi off automatically around 9pm. Reminder that my timezone is not necessarily the Pi's timezone",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 15:44 GMT-0800",
-    "entry": "On a feather's gpio, RX pin is 24 and TX is 25. There's a library called 'board' I can import and directly reference these pins as board.TX, making the connection even easier to set up. Soldering is still a couple days away (looking to buy a used kit), while I'm waiting I'll 3d print a couple backup cases"
+    "entry": "On a feather's gpio, RX pin is 24 and TX is 25. There's a library called 'board' I can import and directly reference these pins as board.TX, making the connection even easier to set up. Soldering is still a couple days away (looking to buy a used kit), while I'm waiting I'll 3d print a couple backup cases",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 15:44 GMT-0800",
-    "entry": "For future self: busio.UART needs a baudrate, the feather can likely handle 115200 as the common default, but I'll make sure pyserial opens my connection at the same rate"
+    "entry": "For future self: busio.UART needs a baudrate, the feather can likely handle 115200 as the common default, but I'll make sure pyserial opens my connection at the same rate",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 15:43 GMT-0800",
-    "entry": "Caveat: uart.write() sends data as bytes, so I'll need to run .encode('utf-8') on my string before sending, then decode it on the other end"
+    "entry": "Caveat: uart.write() sends data as bytes, so I'll need to run .encode('utf-8') on my string before sending, then decode it on the other end",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 15:33 GMT-0800",
-    "entry": "I was thinking of using pyserial on feather but turns out there's already a built-in busio.UART class that came with the flash installation. I can pass my notifications as a stringified JSON object and send it over UART, with a newline character at the end to signal the end of the stream. I think the pyserial library should interpret this correctly if I just use the readline fn "
+    "entry": "I was thinking of using pyserial on feather but turns out there's already a built-in busio.UART class that came with the flash installation. I can pass my notifications as a stringified JSON object and send it over UART, with a newline character at the end to signal the end of the stream. I think the pyserial library should interpret this correctly if I just use the readline fn ",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 15:16 GMT-0800",
-    "entry": "I'll use the pyserial library to read lines into my rasp pi code. the Pi UART device path is usually /dev/serial0 but I'll want to verify. I'll need to enable serial port hardware in raspi-config before I get any data in"
+    "entry": "I'll use the pyserial library to read lines into my rasp pi code. the Pi UART device path is usually /dev/serial0 but I'll want to verify. I'll need to enable serial port hardware in raspi-config before I get any data in",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 15:15 GMT-0800",
-    "entry": "Solder housekeeping: I'll need 1 pin for GND to GND to create a common reference voltage, 1 pin for 3.3v power, and 1pin to feed the feather's TX serial output pin to the pi's RX serial input pin"
+    "entry": "Solder housekeeping: I'll need 1 pin for GND to GND to create a common reference voltage, 1 pin for 3.3v power, and 1pin to feed the feather's TX serial output pin to the pi's RX serial input pin",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 14:28 GMT-0800",
-    "entry": "I was hoping to use more ANSI characters to bold and underline the app names that act as headers for each message section, unfortunately my pi terminal font options are limited and I don't want to try introducing a new font right now."
+    "entry": "I was hoping to use more ANSI characters to bold and underline the app names that act as headers for each message section, unfortunately my pi terminal font options are limited and I don't want to try introducing a new font right now.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 14:11 GMT-0800",
-    "entry": "After fiddling around with f\"{test:<10}|\" I was able to fill out each sender and message when they are too short for their column width. Using [20:] I can do the proper truncation as well"
+    "entry": "After fiddling around with f\"{test:<10}|\" I was able to fill out each sender and message when they are too short for their column width. Using [20:] I can do the proper truncation as well",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 14:07 GMT-0800",
-    "entry": "I'm printing some mock data to the display (success!) but now I want to properly format and truncate the sender/message so that it all is aligned in a table-looking format."
+    "entry": "I'm printing some mock data to the display (success!) but now I want to properly format and truncate the sender/message so that it all is aligned in a table-looking format.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 17 2026 09:28 GMT-0800",
-    "entry": "Unfortunately, there's no concept of UUID in this ANCS library. Notifications are sent with a numerical ID counting up from 0 where 0 is the first banked notification. This will make it trickier to overwrite my 'latest message from a sender' if I have the same sender in separate group texts or emails.."
+    "entry": "Unfortunately, there's no concept of UUID in this ANCS library. Notifications are sent with a numerical ID counting up from 0 where 0 is the first banked notification. This will make it trickier to overwrite my 'latest message from a sender' if I have the same sender in separate group texts or emails..",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 15:43 GMT-0800",
-    "entry": "As far as data goes, I can get back the app id, title, subtitle (if any, usually group chat name), message, and date sent, in ISO 8601 YYYYMMDDTHHMMSS"
+    "entry": "As far as data goes, I can get back the app id, title, subtitle (if any, usually group chat name), message, and date sent, in ISO 8601 YYYYMMDDTHHMMSS",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 15:40 GMT-0800",
-    "entry": "Switched back to the circuit python ANCS library in the feather code, it finally showed up for a brief time on my iPad, so I connected. Each subsequent connection on device boot takes anywhere from 30 seconds to 5 minutes, so I'll just keep a timeout running on my pi that will shut down if connection isn't established on my feather after like 20 minutes."
+    "entry": "Switched back to the circuit python ANCS library in the feather code, it finally showed up for a brief time on my iPad, so I connected. Each subsequent connection on device boot takes anywhere from 30 seconds to 5 minutes, so I'll just keep a timeout running on my pi that will shut down if connection isn't established on my feather after like 20 minutes.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 15:04 GMT-0800",
-    "entry": "If I set up the feather for UART connection instead of ANCS, it easily connects to the Adafruit ios app for bluetooth connections, so at very least, my device isn't faulty."
+    "entry": "If I set up the feather for UART connection instead of ANCS, it easily connects to the Adafruit ios app for bluetooth connections, so at very least, my device isn't faulty.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 14:39 GMT-0800",
-    "entry": "Tried using blueutil to scan for available bluetooth devices from my mac, still no luck"
+    "entry": "Tried using blueutil to scan for available bluetooth devices from my mac, still no luck",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 14:33 GMT-0800",
-    "entry": "When the feather has an open radio connection broadcasting, I should expect it to show up in the iOS setting's list of bluetooth devices, but it's not showing up, even though I've verified the device is pinging."
+    "entry": "When the feather has an open radio connection broadcasting, I should expect it to show up in the iOS setting's list of bluetooth devices, but it's not showing up, even though I've verified the device is pinging.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 14:20 GMT-0800",
-    "entry": "Added all the necessary circuitPython libraries to my Feather, time to write some ANCS code and establish connection to my iOS device, through which I'll route all notifications"
+    "entry": "Added all the necessary circuitPython libraries to my Feather, time to write some ANCS code and establish connection to my iOS device, through which I'll route all notifications",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 14:12 GMT-0800",
-    "entry": "Learned what serial output is, since that's how I read data on my Feather on my mac. I use the `screen` command to get a connection to my peripheral's /dev/tty"
+    "entry": "Learned what serial output is, since that's how I read data on my Feather on my mac. I use the `screen` command to get a connection to my peripheral's /dev/tty",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 14:05 GMT-0800",
-    "entry": "Feather has arrived. Flashing the drive and formatting for circuitPython"
+    "entry": "Feather has arrived. Flashing the drive and formatting for circuitPython",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 13:31 GMT-0800",
-    "entry": "my terminal doesn't support true RGB color, so I'm getting back very simple coloring on my display. To get a deep amber color, I could try messing with the frame buffer set in my pi's config. Will probably do this later as it's not a priority. Also it's the IBM 3290 that had the amber display, not 3270."
+    "entry": "my terminal doesn't support true RGB color, so I'm getting back very simple coloring on my display. To get a deep amber color, I could try messing with the frame buffer set in my pi's config. Will probably do this later as it's not a priority. Also it's the IBM 3290 that had the amber display, not 3270.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 12:50 GMT-0800",
-    "entry": "I'd rather use underline text to format but for now I'll just use unicode Box drawing characters to make the edges of the table"
+    "entry": "I'd rather use underline text to format but for now I'll just use unicode Box drawing characters to make the edges of the table",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 12:50 GMT-0800",
-    "entry": "reminder to sort notifications in a group based on latest timestamp, but this may not be an issue since notifications will likely be loading in chronologically anyways."
+    "entry": "reminder to sort notifications in a group based on latest timestamp, but this may not be an issue since notifications will likely be loading in chronologically anyways.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 12:36 GMT-0800",
-    "entry": "I'll be scrolling through all notifications at a fairly slow rate. If a new notification comes in mid-scroll or gets deleted mid-scroll, I'll let the notification list finish its current scroll before re-fetching the latest state of notifications. This means I'll probably store my notifications on my Feather and send notification data one row at a time to the pi, rather than keep a separate store on the pi."
+    "entry": "I'll be scrolling through all notifications at a fairly slow rate. If a new notification comes in mid-scroll or gets deleted mid-scroll, I'll let the notification list finish its current scroll before re-fetching the latest state of notifications. This means I'll probably store my notifications on my Feather and send notification data one row at a time to the pi, rather than keep a separate store on the pi.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 12:32 GMT-0800",
-    "entry": "Because I can't guarantee a unique identifier for messages from the same sender if that sender is posting to a group message, I'll need to use some sort of combination of sender+reciever as a UUID that signals if I should overwrite an existing communication (I only want to show the latest notification from a group text, for example)."
+    "entry": "Because I can't guarantee a unique identifier for messages from the same sender if that sender is posting to a group message, I'll need to use some sort of combination of sender+reciever as a UUID that signals if I should overwrite an existing communication (I only want to show the latest notification from a group text, for example).",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 12:00 GMT-0800",
-    "entry": "I'm thinking a line dedicated to the name of the service (Gmail, Message), then a line with HH:MM | Sender | Message . I'll keep the Sender truncated to a few characters and then fill the rest of the line with a message preview."
+    "entry": "I'm thinking a line dedicated to the name of the service (Gmail, Message), then a line with HH:MM | Sender | Message . I'll keep the Sender truncated to a few characters and then fill the rest of the line with a message preview.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 11:57 GMT-0800",
-    "entry": "Going with bash profile load, disabling systemctl service. Moving on to what my display should be."
+    "entry": "Going with bash profile load, disabling systemctl service. Moving on to what my display should be.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 11:51 GMT-0800",
-    "entry": "If I want to keep auto-login, I can scrap the systemd service and just have my script run in the bashprofile when my tty instance starts up, checking to make sure I'm running it off the main tty and not pty."
+    "entry": "If I want to keep auto-login, I can scrap the systemd service and just have my script run in the bashprofile when my tty instance starts up, checking to make sure I'm running it off the main tty and not pty.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 16 2026 11:38 GMT-0800",
-    "entry": "Added my user to the tty group, but turns out tty1 has restrictive permissions, possibly due to my auto-login"
+    "entry": "Added my user to the tty group, but turns out tty1 has restrictive permissions, possibly due to my auto-login",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Thu Mar 12 2026 12:13 GMT-0800",
-    "entry": "I added the getty service as an After and Requires to my service under /etc/systemd/system/ but I'm still getting back a permission error after reboot."
+    "entry": "I added the getty service as an After and Requires to my service under /etc/systemd/system/ but I'm still getting back a permission error after reboot.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Thu Mar 12 2026 12:04 GMT-0800",
-    "entry": "systemctl show getty@tty1.service | grep -E 'After|Before|WantedBy' shows me where the terminal load sits in the boot order. My on-boot service should be in the Before section, handled by adding getty to my service's After section"
+    "entry": "systemctl show getty@tty1.service | grep -E 'After|Before|WantedBy' shows me where the terminal load sits in the boot order. My on-boot service should be in the Before section, handled by adding getty to my service's After section",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Thu Mar 12 2026 11:58 GMT-0800",
-    "entry": "The directive After=multi-user.target may not guarantee that TTY is fully initialized and owned by my user, especially with auto-login configured, which assigns ownership of tty1 to my user. If I make auto-login a pre-req to running my script, that should solve it"
+    "entry": "The directive After=multi-user.target may not guarantee that TTY is fully initialized and owned by my user, especially with auto-login configured, which assigns ownership of tty1 to my user. If I make auto-login a pre-req to running my script, that should solve it",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Thu Mar 12 2026 11:43 GMT-0800",
-    "entry": "systemd service runs on boot but doesn't show up in terminal. It may not be the last thing running and therefore doesn't ever make it to output, or /dev/tty1 isn't set up yet at the moment of run. systemctl status shows a permission denied issue."
+    "entry": "systemd service runs on boot but doesn't show up in terminal. It may not be the last thing running and therefore doesn't ever make it to output, or /dev/tty1 isn't set up yet at the moment of run. systemctl status shows a permission denied issue.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 09:57 GMT-0800",
-    "entry": "'Connecting' text is centered, now to add the dots. I don't want to just be rewriting '.' then '..' then '...', I'd rather have them appear dynamically, so I'll just do a while loop that prints and waits, moving the cursor. I'll then need to clear out just the portion of that line that has the dots in order to reset them."
+    "entry": "'Connecting' text is centered, now to add the dots. I don't want to just be rewriting '.' then '..' then '...', I'd rather have them appear dynamically, so I'll just do a while loop that prints and waits, moving the cursor. I'll then need to clear out just the portion of that line that has the dots in order to reset them.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 09:52 GMT-0800",
-    "entry": "I learned that ANSI escape codes expect integers, so I need to use Python's // divider instead of /"
+    "entry": "I learned that ANSI escape codes expect integers, so I need to use Python's // divider instead of /",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 09:36 GMT-0800",
-    "entry": "I can center my text horizontally using print('text'.center(dimensions.columns)), but I need to center it vertically as well. Looks like ANSI escape codes will be the move again. `backslash x1b[10;5H moves to line 10, column 5.`"
+    "entry": "I can center my text horizontally using print('text'.center(dimensions.columns)), but I need to center it vertically as well. Looks like ANSI escape codes will be the move again. `backslash x1b[10;5H moves to line 10, column 5.`",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 09:30 GMT-0800",
-    "entry": "os.get_terminal_size(tty.fileno()) gives me os.terminal_size(columns=128, lines=37)"
+    "entry": "os.get_terminal_size(tty.fileno()) gives me os.terminal_size(columns=128, lines=37)",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 09:20 GMT-0800",
-    "entry": "I'll use os.get_terminal_size() on my dev/tt1 output to figure out how to properly center my loading screen. I'll animate the classic loading dots"
+    "entry": "I'll use os.get_terminal_size() on my dev/tt1 output to figure out how to properly center my loading screen. I'll animate the classic loading dots",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 09:05 GMT-0800",
-    "entry": "I don't love this approach, but since this doesn't affect the system outside of my script, I'm going to bank sys.stdout and overwrite it with my tty path, then swap back to normal sys.stdout at the end of my script."
+    "entry": "I don't love this approach, but since this doesn't affect the system outside of my script, I'm going to bank sys.stdout and overwrite it with my tty path, then swap back to normal sys.stdout at the end of my script.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 08:57 GMT-0800",
-    "entry": "First, I'll want to clear out the terminal console. I was thinking just importing subprocess and running subprocess.run(['clear']) but it turns out I can just use ANSI escape codes to clear the screen and mute the flashing cursor"
+    "entry": "First, I'll want to clear out the terminal console. I was thinking just importing subprocess and running subprocess.run(['clear']) but it turns out I can just use ANSI escape codes to clear the screen and mute the flashing cursor",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Tue Mar 10 2026 08:48 GMT-0800",
-    "entry": "When I ssh into my pi, any script I run only shows up on my ssh'ed terminal. I'll need to reroute my output to my display, something like using echo 'hello world' > /dev/tty1"
+    "entry": "When I ssh into my pi, any script I run only shows up on my ssh'ed terminal. I'll need to reroute my output to my display, something like using echo 'hello world' > /dev/tty1",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 09 2026 22:35 GMT-0800",
-    "entry": "Something I didn't consider.. I need to solder the pins between the Pi and the Feather.. Only problem is I don't know how to solder"
+    "entry": "Something I didn't consider.. I need to solder the pins between the Pi and the Feather.. Only problem is I don't know how to solder",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 09 2026 22:30 GMT-0800",
-    "entry": "Using systemd, I was able to create a custom service file that runs on boot, so my script will start right off the bat. Corrected file permissions, enabled service, and checked the system logs to ensure it's correctly enabled"
+    "entry": "Using systemd, I was able to create a custom service file that runs on boot, so my script will start right off the bat. Corrected file permissions, enabled service, and checked the system logs to ensure it's correctly enabled",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 09 2026 20:52 GMT-0800",
-    "entry": "using raspi-config I switched to auto-login so I don't have to ssh in with a password every time."
+    "entry": "using raspi-config I switched to auto-login so I don't have to ssh in with a password every time.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 09 2026 20:30 GMT-0800",
-    "entry": "sudo poweroff will be a nice command to shut off the device for the day. Convenient that powering off the pi also powers off the display."
+    "entry": "sudo poweroff will be a nice command to shut off the device for the day. Convenient that powering off the pi also powers off the display.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 09 2026 20:00 GMT-0800",
-    "entry": "My display wasn't working correctly, had to check I was properly sshing in with nmap and ifconfig. I updated the config.txt on my Pi's OS to ensure it was handling the display correctly. Turns out case for the pi is 3d printed and doesn't seat the HDMI port right, so I'll need to get a different kind of case."
+    "entry": "My display wasn't working correctly, had to check I was properly sshing in with nmap and ifconfig. I updated the config.txt on my Pi's OS to ensure it was handling the display correctly. Turns out case for the pi is 3d printed and doesn't seat the HDMI port right, so I'll need to get a different kind of case.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Mon Mar 09 2026 18:30 GMT-0800",
-    "entry": "Pi gear arrived today. I flashed a memory card with Pi OS lite. I tried SSHing in with the pi@raspberrypi.local command, but it didn't work. I was able to ssh in with my userid @ the address the Pi takes on my network."
+    "entry": "Pi gear arrived today. I flashed a memory card with Pi OS lite. I tried SSHing in with the pi@raspberrypi.local command, but it didn't work. I was able to ssh in with my userid @ the address the Pi takes on my network.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 21:51 GMT-0800",
-    "entry": "Order for the feather is in. I'm naming this project 'Ripe Banana'"
+    "entry": "Order for the feather is in. I'm naming this project 'Ripe Banana'",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 20:54 GMT-0800",
-    "entry": "From the spec, Feather typically draws between 300µA and 400µA, which is well within the Pi's power pin limit of 50mA. Aside: I'll need to connect a GND pin between the two devices."
+    "entry": "From the spec, Feather typically draws between 300µA and 400µA, which is well within the Pi's power pin limit of 50mA. Aside: I'll need to connect a GND pin between the two devices.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 20:53 GMT-0800",
-    "entry": "I'm not actually sure if the Feather can transfer data over network, worst case we do Feather TX -> Pi RX pin, and since the Feather runs on 3.3v, I can connect it to the Pi's 3.3v power pin."
+    "entry": "I'm not actually sure if the Feather can transfer data over network, worst case we do Feather TX -> Pi RX pin, and since the Feather runs on 3.3v, I can connect it to the Pi's 3.3v power pin.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 20:43 GMT-0800",
-    "entry": "ANCS can give me back  app_id, message body, subtitle, and title, which is all I'll need to display"
+    "entry": "ANCS can give me back  app_id, message body, subtitle, and title, which is all I'll need to display",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 20:41 GMT-0800",
-    "entry": "Current plan: iOS -> Feather, format to JSON, send to pi over physical wire connection. Both the Pi and the Feather have UART serial communication pins. I could also run the notifications back and forth over my local network, but we'll keep physical connection as an option"
+    "entry": "Current plan: iOS -> Feather, format to JSON, send to pi over physical wire connection. Both the Pi and the Feather have UART serial communication pins. I could also run the notifications back and forth over my local network, but we'll keep physical connection as an option",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 20:19 GMT-0800",
-    "entry": "With a bluetooth connection, I can impersonate a BLE peripheral that iOS can forward notifications to. This repo https://github.com/adafruit/Adafruit_CircuitPython_BLE_Apple_Notification_Center is a CircuitPython library so I'll need an add-on that supports it, like the Adafruit Feather nRF52840. There are other libraries that can handle ANCS for raspberry pis directly, but none seem well-supported nor documented."
+    "entry": "With a bluetooth connection, I can impersonate a BLE peripheral that iOS can forward notifications to. This repo https://github.com/adafruit/Adafruit_CircuitPython_BLE_Apple_Notification_Center is a CircuitPython library so I'll need an add-on that supports it, like the Adafruit Feather nRF52840. There are other libraries that can handle ANCS for raspberry pis directly, but none seem well-supported nor documented.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 20:17 GMT-0800",
-    "entry": "As an aside, Meta is sunsetting their Instagram / Messenger desktop clients, probably because they're not riddled with enough ads."
+    "entry": "As an aside, Meta is sunsetting their Instagram / Messenger desktop clients, probably because they're not riddled with enough ads.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 19:46 GMT-0800",
-    "entry": "/Library/Group Containers/group.com.apple.usernoted is a directory that shows all notifications but this is still on the Mac, not the phone (or ipad?), so it might not have every notification, or it's actually just an extra layer of rerouting from phone to mac to pi."
+    "entry": "/Library/Group Containers/group.com.apple.usernoted is a directory that shows all notifications but this is still on the Mac, not the phone (or ipad?), so it might not have every notification, or it's actually just an extra layer of rerouting from phone to mac to pi.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 19:43 GMT-0800",
-    "entry": "So with iOS 26.4, Apple is allowing ANCS (their notification system) to forward notifications to third-party devices but ONLY IN THE EU because the EU actually demands this sort of flexibility. So in the future I could just do a direct forwarding to my Pi but for now I'll have to route from iOS device to Pi."
+    "entry": "So with iOS 26.4, Apple is allowing ANCS (their notification system) to forward notifications to third-party devices but ONLY IN THE EU because the EU actually demands this sort of flexibility. So in the future I could just do a direct forwarding to my Pi but for now I'll have to route from iOS device to Pi.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 19:40 GMT-0800",
-    "entry": "Considered running everything through a Shortcut on iOS with webhooks but the Shortcuts app is limited to only triggers from messages or the Mail app, looks fairly limited overall. Apple must not have enough demand from Shortcut power users. I thought about intercepting iPhone notifications but what if I just forwarded notifications from my device (or another apple device) to my Pi?"
+    "entry": "Considered running everything through a Shortcut on iOS with webhooks but the Shortcuts app is limited to only triggers from messages or the Mail app, looks fairly limited overall. Apple must not have enough demand from Shortcut power users. I thought about intercepting iPhone notifications but what if I just forwarded notifications from my device (or another apple device) to my Pi?",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 19:32 GMT-0800",
-    "entry": "Still not loving the way the project is going, it doesn't capture the vision of letting each source of messages be handled independently. Is there an alternative approach?"
+    "entry": "Still not loving the way the project is going, it doesn't capture the vision of letting each source of messages be handled independently. Is there an alternative approach?",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 19:06 GMT-0800",
-    "entry": "If I'm hosting chat.db via server on my Mac, should I consider UDP broadcasting or writng to a file that gets rsync'd? Nah, I can just have a localhost server on my network. Also if I want to distinguish messages by service, I might need to have a separate hashmap for each service to store each distinct conversation. Or I could have a hashmap of hashmaps... I should consider which will be most write-efficient."
+    "entry": "If I'm hosting chat.db via server on my Mac, should I consider UDP broadcasting or writng to a file that gets rsync'd? Nah, I can just have a localhost server on my network. Also if I want to distinguish messages by service, I might need to have a separate hashmap for each service to store each distinct conversation. Or I could have a hashmap of hashmaps... I should consider which will be most write-efficient.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 19:06 GMT-0800",
-    "entry": "A lot of these services will give you email notifications if you opt-in, but that heavily loads up Gmail and if the API is unavailable for whatever reason, there go most of my notifications"
+    "entry": "A lot of these services will give you email notifications if you opt-in, but that heavily loads up Gmail and if the API is unavailable for whatever reason, there go most of my notifications",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 18:31 GMT-0800",
-    "entry": "Drat, a lot of the sources I was hoping to pull messages from don't have a public API. Turns out Meta had quite a few available back in the day but have shuttered anything that's not for businesses.. time to rethink if I'd rather go another route or just condense to the few public APIs I've found (Gmail, Discord) + the chat.db. Gmail can list user messages using https://developers.google.com/workspace/gmail/api/guides/list-messages#code_sample , adding the param q after: XXXXXXX timestamp to get messages for a given day https://developers.google.com/workspace/gmail/api/reference/rest/v1/users.messages/list#query-parameters . I should then consider 'watermarking' a given timestamp each time the pi reboots to make sure I'm only getting messages for a given day."
+    "entry": "Drat, a lot of the sources I was hoping to pull messages from don't have a public API. Turns out Meta had quite a few available back in the day but have shuttered anything that's not for businesses.. time to rethink if I'd rather go another route or just condense to the few public APIs I've found (Gmail, Discord) + the chat.db. Gmail can list user messages using https://developers.google.com/workspace/gmail/api/guides/list-messages#code_sample , adding the param q after: XXXXXXX timestamp to get messages for a given day https://developers.google.com/workspace/gmail/api/reference/rest/v1/users.messages/list#query-parameters . I should then consider 'watermarking' a given timestamp each time the pi reboots to make sure I'm only getting messages for a given day.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Mar 08 2026 17:38 GMT-0800",
-    "entry": "Thinking more on the APIs, I'll need to be mindful about auth and where I want to store keys. This journal is public, hope no one (no bot) is getting ideas. Side note: I'd probably want to dedupe messages sent by the same sender, so I only read their most recent message."
+    "entry": "Thinking more on the APIs, I'll need to be mindful about auth and where I want to store keys. This journal is public, hope no one (no bot) is getting ideas. Side note: I'd probably want to dedupe messages sent by the same sender, so I only read their most recent message.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 13:00 GMT-0800",
-    "entry": "Spent way too much time fussing over the cheapest but durable hardware. Raspberry Pi Zero 2W + Waveshare 7in display, maybe a push button + dupont jumper wires to have a bootup / shutdown option. Order is in."
+    "entry": "Spent way too much time fussing over the cheapest but durable hardware. Raspberry Pi Zero 2W + Waveshare 7in display, maybe a push button + dupont jumper wires to have a bootup / shutdown option. Order is in.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 13:00 GMT-0800",
-    "entry": "I like the idea of a scheduled on/off for the pi. Some sort of cron job, probably. Color scheme for the display will be amber on black (IBM 3270?)"
+    "entry": "I like the idea of a scheduled on/off for the pi. Some sort of cron job, probably. Color scheme for the display will be amber on black (IBM 3270?)",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 12:51 GMT-0800",
-    "entry": "Hardware: doesn't need to be a display bigger than a Nintendo Switch. If I want bigger, I should just get a monitor. I envision a retro display, as though I were running this on an Apple II"
+    "entry": "Hardware: doesn't need to be a display bigger than a Nintendo Switch. If I want bigger, I should just get a monitor. I envision a retro display, as though I were running this on an Apple II",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 12:24 GMT-0800",
-    "entry": "The notifications should be categorized by source, with a table header of Source | Time | Sender | first 100 chars of message. If I do the iMessage db route, I'll have to host it on a local server on my laptop. Not optimal if I planned on sleeping my computer."
+    "entry": "The notifications should be categorized by source, with a table header of Source | Time | Sender | first 100 chars of message. If I do the iMessage db route, I'll have to host it on a local server on my laptop. Not optimal if I planned on sleeping my computer.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 12:23 GMT-0800",
-    "entry": "Raspberry pi seems like the way to go, with an e-ink or mini LED display. Gmail has an accessible API I can fetch from, but I'll need to check that all the other sources I want to pull from do as well. iMessage looks to be a challenge, might be easier to pull from the local chat.db on my computer."
+    "entry": "Raspberry pi seems like the way to go, with an e-ink or mini LED display. Gmail has an accessible API I can fetch from, but I'll need to check that all the other sources I want to pull from do as well. iMessage looks to be a challenge, might be easier to pull from the local chat.db on my computer.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 12:20 GMT-0800",
-    "entry": "The motive here is that I don't like checking my phone. If I have notifications enabled, they're a nuisance. If I disable notifications, I end up checking the apps anyways. With a mailbox, you look to see if the flag is up, and that tells you if there's mail, but the mailbox isn't yelling at you. Or like bananas. You just look over at the bananas and you have a pretty good idea for whether or not you can eat them."
+    "entry": "The motive here is that I don't like checking my phone. If I have notifications enabled, they're a nuisance. If I disable notifications, I end up checking the apps anyways. With a mailbox, you look to see if the flag is up, and that tells you if there's mail, but the mailbox isn't yelling at you. Or like bananas. You just look over at the bananas and you have a pretty good idea for whether or not you can eat them.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Wed Mar 04 2026 12:17 GMT-0800",
-    "entry": "I want to build a personal notification display, something like a cross between a bloomberg terminal, airport flight monitor, and a hospital bed management display. It should show all my notifications, mail, DMs, texts, and update in realtime."
+    "entry": "I want to build a personal notification display, something like a cross between a bloomberg terminal, airport flight monitor, and a hospital bed management display. It should show all my notifications, mail, DMs, texts, and update in realtime.",
+    "tags": ["ripe-banana"]
   },
   {
     "timestamp": "Sun Jan 04 2026 13:20 GMT-0800",
